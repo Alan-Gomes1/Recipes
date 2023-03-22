@@ -1,12 +1,26 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste</title>
-</head>
+{% include 'recipes/partials/head.html' %}
+
 <body>
-    <h1>Teste</h1>
+    {% include 'recipes/partials/header.html' %}
+
+    <div class="search-container">
+        <div class="container">
+            <form action="" class="search-form">
+                <input type="search" class="search-input" name="search">
+                <button type="submit" class="search-button">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <main class="main-content-container">
+        <div class="main-content container main-content-list">
+            {% include 'recipes/partials/recipe.html' %}
+
+        </div>
+    </main>
+
+    {% include 'recipes/partials/footer.html' %}
 </body>
 </html>
