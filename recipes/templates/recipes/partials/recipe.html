@@ -3,12 +3,12 @@
         <img src="https://placehold.co/1280x720/269fe6/png" alt="">
     </div>
     <div class="recipe-title-container">
-        <h2 class="recipe-title">Lorem ipsum dolor sit amet.</h2>
+        <h2 class="recipe-title">{{ recipe.title }}</h2>
     </div>
     <div class="recipe-author">
         <span class="recipe-author-item">
             <i class="fas fa-user"></i>
-            Alan Gomes
+            {{ recipe.author.first_name }} {{ recipe.author.last_name }}
         </span>
         <span class="recipe-author-item">
             <i class="fas fa-calendar-alt"></i>

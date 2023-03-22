@@ -1,4 +1,10 @@
-{% include 'recipes/partials/head.html' %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    {% include 'recipes/partials/head.html' %}
+    <title>{% block 'title' %}{% endblock 'title' %}Recipe</title>
+</head>
 
 <body>
     {% include 'recipes/partials/header.html' %}
@@ -16,8 +22,7 @@
 
     <main class="main-content-container">
         <div class="main-content container main-content-list">
-            {% include 'recipes/partials/recipe.html' %}
-
+            {% block 'content' %}{% endblock 'content' %}
         </div>
     </main>
 
