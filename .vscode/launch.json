@@ -7,7 +7,8 @@
         {
             "name": "Python: Django",
             "type": "python",
-            "request": "test",
+            "request": "launch",
+            "purpose": ["debug-test"],
             "console": "integratedTerminal",
             "program": "${workspaceFolder}\\manage.py",
             "args": [
