@@ -1,12 +1,11 @@
-from django.contrib.auth.models import User
-from django.test import TestCase
 from django.urls import resolve, reverse
 
 from recipes import views
-from recipes.models import Category, Recipe
+
+from .test_recipe_base import RecipeTestBase
 
 
-class RecipeViewstest(TestCase):
+class RecipeViewsTest(RecipeTestBase):
     def test_recipe_home_view_function_is_correct(self):
         view = resolve(
             reverse('recipes:home')
@@ -25,37 +24,18 @@ class RecipeViewstest(TestCase):
         )
         self.assertTemplateUsed(response, 'recipes/pages/home.html')
 
-    def teste_recipe_home_template_shows_no_recipes_found_if_no_recipes(self):
+    def test_recipe_home_template_shows_no_recipes_found_if_no_recipes(self):
         response = self.client.get(
             reverse('recipes:home')
         )
         self.assertIn(
             'No recipes found here',
-            response.content.decode('utf-8'))
+            response.content.decode('utf-8')
+        )
 
-        category = Category.objects.create(name='category')
-        author = User.objects.create_user(
-            first_name='user',
-            last_name='name',
-            username='username',
-            password='123456',
-            email='username@email.com',
-        )
-        recipe = Recipe.objects.create(
-            category=category,
-            author=author,
-            title='Recipe title',
-            description='Recipe description',
-            slug='recipe-slug',
-            preparation_time=10,
-            preparation_time_unit='Minutos',
-            servings=5,
-            servings_unit='Porções',
-            preparation_steps='Recipe Preparation steps',
-            preparation_steps_is_html=False,
-            is_publised=True,
-            cover='recipes/covers/2023/03/24/Pão_de_hambúrguer_-_Guia_da_Cozinha_rzvdr5d.jpeg',
-        )
+    def test_recipe_home_template_loads_recipes(self):
+        # need a recipe this test
+        self.make_recipe()
         response = self.client.get(
             reverse('recipes:home')
         )
