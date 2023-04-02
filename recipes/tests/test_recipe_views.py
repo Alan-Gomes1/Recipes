@@ -33,7 +33,6 @@ class RecipeViewstest(TestCase):
             'No recipes found here',
             response.content.decode('utf-8'))
 
-    def test_recipe_home_template_loads_recipes(self):
         category = Category.objects.create(name='category')
         author = User.objects.create_user(
             first_name='user',
@@ -55,7 +54,17 @@ class RecipeViewstest(TestCase):
             preparation_steps='Recipe Preparation steps',
             preparation_steps_is_html=False,
             is_publised=True,
+            cover='recipes/covers/2023/03/24/Pão_de_hambúrguer_-_Guia_da_Cozinha_rzvdr5d.jpeg',
         )
+        response = self.client.get(
+            reverse('recipes:home')
+        )
+        content = response.content.decode('utf-8')
+        response_context_recipes = response.context['recipes']
+        self.assertIn('Recipe title', content)
+        self.assertIn('10 Minutos', content)
+        self.assertIn('5 Porções', content)
+        self.assertEqual(len(response_context_recipes), 1)
 
     def test_recipe_category_view_function_is_correct(self):
         view = resolve(
