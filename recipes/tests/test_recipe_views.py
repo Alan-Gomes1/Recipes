@@ -37,7 +37,7 @@ class RecipeViewsTest(RecipeTestBase):
 
     def test_recipe_home_template_dont_load_recipes_not_published(self):
         # need a recipe this test
-        self.make_recipe(is_publised=False)
+        self.make_recipe(is_published=False)
         response = self.client.get(reverse('recipes:home'))
         self.assertIn(
             'No recipes found here', response.content.decode('utf-8')
@@ -65,7 +65,7 @@ class RecipeViewsTest(RecipeTestBase):
 
     def test_recipe_category_template_dont_load_recipes_not_published(self):
         # need a recipe this test
-        recipe = self.make_recipe(is_publised=False)
+        recipe = self.make_recipe(is_published=False)
         response = self.client.get(
             reverse('recipes:recipe', kwargs={'id': recipe.category.id})
         )
@@ -93,7 +93,7 @@ class RecipeViewsTest(RecipeTestBase):
 
     def test_recipe_detail_template_dont_load_recipe_not_published(self):
         # need a recipe this test
-        recipe = self.make_recipe(is_publised=False)
+        recipe = self.make_recipe(is_published=False)
         response = self.client.get(
             reverse('recipes:recipe', kwargs={'id': recipe.id})
         )

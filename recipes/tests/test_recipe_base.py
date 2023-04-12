@@ -40,7 +40,7 @@ class RecipeTestBase(TestCase):
         servings_unit='Porções',
         preparation_steps='Recipe Preparation steps',
         preparation_steps_is_html=False,
-        is_publised=True,
+        is_published=True,
         cover='recipes/covers/2023/03/24/Pão_de_hambúrguer_-_Guia_da_Cozinha_rzvdr5d.jpeg',
     ):
         if category_data is None:
@@ -61,6 +61,6 @@ class RecipeTestBase(TestCase):
             servings_unit=servings_unit,
             preparation_steps=preparation_steps,
             preparation_steps_is_html=preparation_steps_is_html,
-            is_publised=is_publised,
+            is_published=is_published,
             cover=cover,
         )
