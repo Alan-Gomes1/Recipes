@@ -21,7 +21,8 @@ class RecipeModelTest(RecipeTestBase):
             servings=5,
             servings_unit='Porções',
             preparation_steps='Recipe Preparation steps',
-            cover='recipes/covers/2023/03/24/Pão_de_hambúrguer_-_Guia_da_Cozinha_rzvdr5d.jpeg',
+            cover='recipes/covers/2023/03/24/\
+            Pão_de_hambúrguer_-_Guia_da_Cozinha_rzvdr5d.jpeg',
         )
         recipe.full_clean()
         recipe.save()
@@ -45,3 +46,9 @@ class RecipeModelTest(RecipeTestBase):
     def test_recipe_is_published_is_false_by_default(self):
         recipe = self.make_recipe_no_defaults()
         self.assertFalse(recipe.is_published)
+
+    def test_recipe_string_representation(self):
+        self.recipe.title = 'Testing Representation'
+        self.recipe.full_clean()
+        self.recipe.save()
+        self.assertEqual(str(self.recipe), 'Testing Representation')
