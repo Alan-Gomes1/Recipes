@@ -1,3 +1,5 @@
+from random import randint
+
 from django.core.exceptions import ValidationError
 from parameterized import parameterized
 
@@ -15,7 +17,7 @@ class RecipeModelTest(RecipeTestBase):
             author=self.make_author(username='newuser'),
             title='Recipe title',
             description='Recipe description',
-            slug='recipe-slug',
+            slug=f'recipe-slug-{randint(0,9)}',
             preparation_time=10,
             preparation_time_unit='Minutos',
             servings=5,
