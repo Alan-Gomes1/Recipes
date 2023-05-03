@@ -129,6 +129,12 @@ h3 {
     color: var(--color-primary);
 }
 
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .main-content {
     padding-top: 0;
 }
