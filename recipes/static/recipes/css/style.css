@@ -294,6 +294,46 @@ h3 {
     background: var(--color-primary-dark);
 }
 
+.form-content {
+    max-width: 64rem;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+}
+
+.form-content label,
+.help-text,
+.errorlist {
+    display: block;
+    margin: 0.5rem 0;
+    font-size: 1.4rem;
+    list-style-type: none;
+}
+
+.errorlist {
+    color: var(--color-error-dark);
+}
+
+.form-content input {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    border: 1px solid var(--color-primary-dark);
+}
+
+.form-content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem 3rem;
+}
+
+.form-content button {
+    padding: 1rem 2rem;
+    border: none;
+    background: var(--color-success-dark);
+    color: white;
+    border-radius: 0.8rem;
+}
+
 .messages-container {
     display: flex;
     flex-flow: column nowrap;
@@ -345,7 +385,8 @@ h3 {
 }
 
 @media (max-width: 600px) {
-    .main-content-list {
+    .main-content-list,
+    .form-content-grid {
         grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
     }
 }
