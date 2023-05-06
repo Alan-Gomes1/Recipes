@@ -27,12 +27,14 @@ class RegisterForm(forms.ModelForm):
         add_attr(self.fields['email'], 'placeholder', 'Your e-mail')
         add_attr(self.fields['first_name'], 'placeholder', 'Ex.: John')
         add_attr(self.fields['last_name'], 'placeholder', 'Ex.: Doe')
+        add_attr(self.fields['password'], 'placeholder',
+                 'Type your password here')
+        add_attr(self.fields['confirm_password'], 'placeholder',
+                 'Repeat your password')
 
     password = forms.CharField(
         required=True,
-        widget=forms.PasswordInput(attrs={
-            'placeholder': 'Type your password here'
-        }),
+        widget=forms.PasswordInput(),
         error_messages={
             'required': 'Password must not be empty'
         },
@@ -41,17 +43,17 @@ class RegisterForm(forms.ModelForm):
         one lowercase letter and one number. The length should be
         at last 8 characters.
         """),
-        validators=[strong_password]
+        validators=[strong_password],
+        label='Password',
     )
 
     confirm_password = forms.CharField(
         required=True,
-        widget=forms.PasswordInput(attrs={
-            'placeholder': 'Repeat your password'
-        }),
+        widget=forms.PasswordInput(),
         error_messages={
             'required': 'This field is required'
-        }
+        },
+        label='Confirm password',
     )
 
     username = forms.CharField(
@@ -59,8 +61,9 @@ class RegisterForm(forms.ModelForm):
         error_messages={
             'required': 'This field is required'
         },
-        help_text='Mandatory. 150 characters or less.\
-        Letters, numbers and @/./+/-/_ only.'
+        help_text=('Mandatory. 150 characters or less.\
+        Letters, numbers and @/./+/-/_ only.'),
+        label='Username',
     )
 
     class Meta:
@@ -89,5 +92,6 @@ class RegisterForm(forms.ModelForm):
 
         if password != confirm_password:
             raise ValidationError({
-                'confirm_password': 'Password and confirm password must be equal'
+                'confirm_password': '\
+                Password and confirm password must be equal'
             })
