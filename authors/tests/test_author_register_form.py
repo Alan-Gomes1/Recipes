@@ -53,14 +53,14 @@ class AuthorRegisterFormUnitTest(TestCase):
 class AuthorRegisterFormIntegrationTest(DjangoTestCase):
     def setUp(self):
         self.form_data = {
-            'user_name': 'user',
+            'username': 'user',
             'first_name': 'first',
             'last_name': 'last',
             'email': 'email@anyemail.com',
             'password': 'Str0ngP@ssword1',
             'confirm_password': 'Str0ngP@ssword1',
         }
-        return super().setUp()
+        self.form = RegisterForm(data=self.form_data)
 
     @parameterized.expand([
         ('username', 'This field is required'),
@@ -137,3 +137,6 @@ class AuthorRegisterFormIntegrationTest(DjangoTestCase):
         url = reverse('authors:create')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
+
+    def test_form_validation(self):
+        self.assertTrue(self.form.is_valid())
