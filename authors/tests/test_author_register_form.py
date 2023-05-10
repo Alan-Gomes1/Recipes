@@ -51,7 +51,7 @@ class AuthorRegisterFormUnitTest(TestCase):
 
 
 class AuthorRegisterFormIntegrationTest(DjangoTestCase):
-    def setUp(self, *args, **kwargs):
+    def setUp(self):
         self.form_data = {
             'user_name': 'user',
             'first_name': 'first',
@@ -60,7 +60,7 @@ class AuthorRegisterFormIntegrationTest(DjangoTestCase):
             'password': 'Str0ngP@ssword1',
             'confirm_password': 'Str0ngP@ssword1',
         }
-        return super().setUp(*args, **kwargs)
+        return super().setUp()
 
     @parameterized.expand([
         ('username', 'This field is required'),
