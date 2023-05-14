@@ -57,6 +57,7 @@ body {
     font-family: var(--font-primary);
     background: var(--color-gray-1);
     color: var(--color-dark-text);
+    height: 100%;
 }
 
 h1,
@@ -68,6 +69,10 @@ h3 {
     max-width: 144rem;
     margin: 0 auto;
     padding: 2rem;
+}
+
+.main-content-container {
+    min-height: 70vh;
 }
 
 .main-header-container {
@@ -84,6 +89,13 @@ h3 {
     width: fit-content;
     margin: 0 auto;
     gap: 2rem;
+}
+
+.msg-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
 }
 
 .search-form {
@@ -242,8 +254,11 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
     background: var(--color-gray-8);
     padding: 2.5rem;
+    position: absolute;
+    bottom: 0;
 }
 
 .main-footer a {
@@ -292,6 +307,19 @@ h3 {
 
 .pagination .page-current {
     background: var(--color-primary-dark);
+}
+
+.plaintext-button {
+    display: inline;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--color-primary);
+    font-size: 1.6rem;
+}
+
+.inline-form {
+    display: inline;
 }
 
 .form-content {

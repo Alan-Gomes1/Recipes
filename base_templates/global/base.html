@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<head>
-    {% include 'global/partials/head.html' %}
-    <title>{% block 'title' %}{% endblock 'title' %}Recipe</title>
-</head>
+    <head>
+        {% include 'global/partials/head.html' %}
+        <title>{% block 'title' %}{% endblock 'title' %}Recipe</title>
+    </head>
 
-<body>
-    {% include 'global/partials/header.html' %}
-    {% include 'global/partials/search.html' %}
+    <body>
+        {% include 'global/partials/header.html' %}
+        {% include 'global/partials/search.html' %}
 
-    <main class="main-content-container">
-        {% block 'content' %}{% endblock 'content' %}
-        {% include 'global/partials/pagination.html' %}
-    </main>
+        <main class="main-content-container">
+            {% block 'content' %}{% endblock 'content' %}
+            {% include 'global/partials/pagination.html' %}
+        </main>
 
-    {% include 'global/partials/footer.html' %}
-</body>
+        {% include 'global/partials/footer.html' %}
+    </body>
 </html>
