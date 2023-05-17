@@ -257,7 +257,6 @@ h3 {
     width: 100%;
     background: var(--color-gray-8);
     padding: 2.5rem;
-    position: absolute;
     bottom: 0;
 }
 
