@@ -65,6 +65,15 @@ h3 {
     font-family: var(--font-headings);
 }
 
+img {
+    max-width: 100%;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
 .container {
     max-width: 144rem;
     margin: 0 auto;
@@ -94,6 +103,15 @@ h3 {
 .msg-login {
     text-align: center;
     margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+.msg-login form {
+    margin-top: 4rem;
+}
+
+.msg-login form button {
+    font-weight: bold;
 }
 
 .search-form {
@@ -320,6 +338,10 @@ h3 {
     display: inline;
 }
 
+.span-2 {
+    grid-column: span 2;
+}
+
 .form-content {
     max-width: 64rem;
     margin: 0 auto;
@@ -339,7 +361,7 @@ h3 {
     color: var(--color-error-dark);
 }
 
-.form-content input {
+.form-content input, textarea, select {
     width: 100%;
     padding: 1rem;
     border-radius: 0.4rem;
@@ -422,6 +444,10 @@ h3 {
 .authors-dashboard-container ul {
     list-style-type: none;
     margin: 1rem 0;
+}
+
+.left {
+    text-align: left;
 }
 
 @media (max-width: 600px) {
