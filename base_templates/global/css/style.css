@@ -100,6 +100,11 @@ a {
     gap: 2rem;
 }
 
+.main-logo:hover {
+    color: orangered;
+    transition: all 800ms ease-in-out;
+}
+
 .msg-login {
     text-align: center;
     margin-bottom: 2rem;
@@ -406,6 +411,7 @@ a {
     border: 1px solid var(--color-success-dark);
     background: var(--color-success-light);
     color: var(--color-success-dark);
+    width: 75%;
 }
 
 .message-warning {
@@ -448,6 +454,92 @@ a {
 
 .left {
     text-align: left;
+}
+
+.hidden-text {
+    display: none;
+}
+
+.menu-container {
+    position : fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    min-height: 100vh;
+    overflow-y: auto;
+    background: orangered;
+    z-index: 2;
+}
+
+.menu-container a {
+    color: white;
+    transition: all 300ms ease-in-out;
+}
+
+.menu-container a:hover {
+    color: black;
+}
+
+.menu-hidden {
+    left: -255px;
+}
+
+.button-show-menu {
+    position: fixed;
+    top: 2rem;
+    left: 260px;
+    color: white;
+    background: orangered;
+    border: none;
+    font-size: 2rem;
+    z-index: 3;
+    padding: 1rem;
+    visibility: visible;
+    opacity: 1;
+    transition: all 300ms ease-in-out;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.button-show-menu-visible {
+    visibility: visible;
+    opacity: 1;
+    left: 5px;
+}
+
+.button-close-menu {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: white;
+    background: none;
+    font-size: 2rem;
+    border: none;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.menu-nav {
+    display: flex;
+    flex-flow: column wrap;
+    font-family: var(--font-headings);
+    font-size: 2rem;
+
+}
+
+.menu-nav a {
+    width: 100%;
+    padding: 1rem;
+}
+
+.profile {
+    text-align: center;
+    margin: 0 auto;
+    padding: 10rem;
+}
+
+.profile h2 {
+    color: orangered;
 }
 
 @media (max-width: 600px) {
