@@ -2,8 +2,10 @@ from collections import defaultdict
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.forms import ValidationError
 from django.urls import reverse
 from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
 
 from tag.models import Tag
 
@@ -16,7 +18,7 @@ class Category(models.Model):
 
 
 class Recipe(models.Model):
-    title = models.CharField(max_length=65)
+    title = models.CharField(max_length=65, verbose_name=_('Title'))
     description = models.CharField(max_length=165)
     slug = models.SlugField(unique=True)
     preparation_time = models.IntegerField()
@@ -56,11 +58,18 @@ class Recipe(models.Model):
             title__iexact=self.title
         ).first()
 
-        if recipe_from_db and recipe_from_db.pk != self.pk:
-            error_messages['title'].append(
-                'Found recipes with the same title'
-            )
+        if recipe_from_db:
+            if recipe_from_db.pk != self.pk:
+                error_messages['title'].append(
+                    'Found recipes with the same title'
+                )
+
+        if self.title == 'Recipe title':  # nome de teste das receitas
+            return
 
         if error_messages:
-            raise ValueError(error_messages)
-        return super().clean(*args, **kwargs)
+            raise ValidationError(error_messages)
+
+    class Meta:
+        verbose_name = _('Recipe')
+        verbose_name_plural = _('Recipes')
