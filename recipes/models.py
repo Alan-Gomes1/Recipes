@@ -1,11 +1,14 @@
+import os
 from collections import defaultdict
 
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.forms import ValidationError
 from django.urls import reverse
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
+from PIL import Image
 
 from tag.models import Tag
 
@@ -46,10 +49,36 @@ class Recipe(models.Model):
     def get_absolute_url(self):
         return reverse('recipes:recipe', args=(self.id,))
 
+    def resize_image(self, image, new_width=2280):
+        image_full_path = os.path.join(settings.MEDIA_ROOT, image.name)
+        img_pillow = Image.open(image_full_path)
+        original_width, original_height = img_pillow.size
+
+        if original_width <= new_width:
+            img_pillow.close()
+            return
+
+        new_height = round((new_width * original_height) / original_width)
+        new_img = img_pillow.resize((new_width, new_height), Image.LANCZOS)
+        new_img.save(
+            image_full_path,
+            optimize=True,
+            quality=95,
+        )
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = f'{slugify(self.title)}'
-        return super().save(*args, **kwargs)
+
+        saved = super().save(*args, **kwargs)
+
+        if self.cover:
+            try:
+                self.resize_image(self.cover)
+            except FileNotFoundError:
+                pass
+
+        return saved
 
     def clean(self, *args, **kwargs):
         error_messages = defaultdict(list)
