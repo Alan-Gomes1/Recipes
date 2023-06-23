@@ -1,21 +1,47 @@
 from rest_framework import serializers
 
-
-class TagSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
-    name = serializers.CharField(max_length=255)
-    slug = serializers.SlugField()
+from authors.validators import AuthorRecipeValidator
+from recipes.models import Recipe
+from tag.models import Tag
 
 
-class RecipeSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
-    title = serializers.CharField(max_length=65)
-    description = serializers.CharField(max_length=165)
-    public = serializers.BooleanField(source='is_published')
-    preparation = serializers.SerializerMethodField()
-    category = serializers.StringRelatedField(source='category.name')
-    author = serializers.StringRelatedField(source='author.username')
-    tags = TagSerializer(many=True)
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = ['id', 'name', 'slug', ]
+
+
+class RecipeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Recipe
+        fields = [
+            'id', 'title', 'description', 'public', 'preparation',
+            'category', 'author', 'tags', 'tag_links', 'preparation_time',
+            'preparation_time_unit', 'servings', 'servings_unit',
+            'preparation_steps', 'cover',
+        ]
+
+    public = serializers.BooleanField(source='is_published', read_only=True)
+    preparation = serializers.SerializerMethodField(read_only=True)
+    category = serializers.StringRelatedField(
+        source='category.name', read_only=True
+    )
+    author = serializers.StringRelatedField(
+        source='author.username', read_only=True
+    )
+    tag_links = serializers.HyperlinkedRelatedField(
+        many=True,
+        source='tags',
+        read_only=True,
+        view_name='recipes:recipes_api_v2_tag'
+    )
 
     def get_preparation(self, recipe):
         return f'{recipe.preparation_time} {recipe.preparation_time_unit}'
+
+    def validate(self, attrs):
+        super_validate = super().validate(attrs)
+        AuthorRecipeValidator(
+            data=attrs, ErrorClass=serializers.ValidationError
+        )
+        return super_validate
