@@ -24,10 +24,11 @@ class AuthorRecipeValidator:
             )
 
         description = data.get('description')
-        if len(description) < 10:
-            self.errors['description'].append(
-                'Description must be at least 10 characters long.'
-            )
+        if description is not None:
+            if len(description) < 10:
+                self.errors['description'].append(
+                    'Description must be at least 10 characters long.'
+                )
 
         if title == description:
             self.errors['title'].append('Cannot be equal to description')
