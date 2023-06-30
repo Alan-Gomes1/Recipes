@@ -19,6 +19,7 @@ dados
 
 <br>
 
+## Home page
 <p align="center">
   <img alt="Página inicial do site com as receitas publicadas" src="./img/Recipes.gif" width="100%">
 </p>
