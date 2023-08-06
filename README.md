@@ -34,7 +34,7 @@ dados
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - HTML, CSS, JavaScript
-- Python, Django
+- Python, Django, Pytest
 - PostgreSQL, Git
 
 ## 💻 Projeto
