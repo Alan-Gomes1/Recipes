@@ -58,7 +58,7 @@ class RecipeListViewHomeAPI(RecipeListViewBase):
     def render_to_response(self, context, **response_kwargs):
         recipe_list = self.get_context_data()["recipes"].object_list.values()
         logger(
-            levelname="WARNING",
+            levelname="INFO",
             message="sucesso ao obter as receitas",
             extra={
                 "method": "RecipeListViewHomeAPI",
@@ -76,10 +76,10 @@ class RecipeListViewCategory(RecipeListViewBase):
 
         if not query_set:
             logger(
-                levelname='WARNING',
-                message='parâmetro category_id não fornecido',
+                levelname="INFO"
+                message="parâmetro category_id não fornecido",
                 extra={
-                    'method': 'RecipeListViewCategory',
+                    "method": "RecipeListViewCategory",
                 }
             )
             raise Http404()

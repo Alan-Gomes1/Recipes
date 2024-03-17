@@ -2,10 +2,12 @@ asgiref==3.6.0
 async-generator==1.10
 attrs==22.2.0
 autopep8==2.0.2
+backports.zoneinfo==0.2.1
 certifi==2023.5.7
 cffi==1.15.1
 colorama==0.4.6
 coverage==7.2.3
+debugpy==1.8.1
 Django==4.1.7
 django-cors-headers==4.1.0
 django-debug-toolbar==4.1.0
@@ -43,7 +45,7 @@ sqlparse==0.4.3
 tomli==2.0.1
 trio==0.22.0
 trio-websocket==0.10.2
-typing_extensions==4.5.0
+typing-extensions==4.5.0
 tzdata==2022.7
 urllib3==2.0.2
 watchdog==3.0.0
